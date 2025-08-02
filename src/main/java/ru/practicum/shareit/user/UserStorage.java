@@ -1,8 +1,5 @@
 package ru.practicum.shareit.user;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
 import java.util.Collection;
 
 public interface UserStorage {
