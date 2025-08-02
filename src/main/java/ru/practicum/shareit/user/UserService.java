@@ -9,8 +9,13 @@ import java.util.List;
 public interface UserService {
 
     UserDto create(NewUserRequest request);
+
     UserDto update(Integer userId, UpdateUserRequest request);
+
     List<UserDto> findAll();
+
     UserDto getUser(Integer id);
+
     UserDto delete(Integer id);
+
 }
