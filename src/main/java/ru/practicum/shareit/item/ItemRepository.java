@@ -37,7 +37,7 @@ public class ItemRepository implements ItemStorage {
 
     @Override
     public Item delete(Integer id) {
-        return null;
+        return items.remove(id);
     }
 
     private int getNextId() {

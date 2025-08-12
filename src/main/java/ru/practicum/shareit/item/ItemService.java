@@ -16,4 +16,6 @@ public interface ItemService {
 
     List<ItemDto> search(String text);
 
+    ItemDto delete(Integer id);
+
 }

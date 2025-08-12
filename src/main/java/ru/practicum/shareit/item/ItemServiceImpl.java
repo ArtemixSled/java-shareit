@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.practicum.shareit.exception.AuthorizationException;
@@ -16,15 +17,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
 
     private final ItemStorage itemStorage;
     private final UserStorage userStorage;
-
-    public ItemServiceImpl(ItemStorage itemStorage, UserStorage userStorage) {
-        this.itemStorage = itemStorage;
-        this.userStorage = userStorage;
-    }
 
     @Override
     public ItemDto create(int ownerId, ItemDto itemDto) {
@@ -58,6 +55,17 @@ public class ItemServiceImpl implements ItemService {
         if (item == null) {
             throw new ResourceNotFoundException("Item id=" + itemId + " не найден");
         }
+        return ItemMapper.toItemDto(item);
+    }
+
+    @Override
+    public ItemDto delete(Integer id) {
+        Item item = itemStorage.getById(id);
+        if (item == null) {
+            throw new ResourceNotFoundException("Item id=" + id + " не найден");
+        }
+
+        itemStorage.delete(id);
         return ItemMapper.toItemDto(item);
     }
 
